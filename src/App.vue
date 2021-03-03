@@ -3,7 +3,7 @@
 
     
     
-    <nav>
+        <nav>
             <div class="container">
                 <div>{{ sitename }}</div>
                 <button @click="displayCart(true)" class="cart-btn" :disabled="!hasItemInCart">£{{ cartTotal }}<i class="fas fa-shopping-basket"></i></button>
@@ -275,5 +275,62 @@ export default {
 
 <style>
 
+
+@media only screen and (max-width: 720px) {
+    
+    body {
+        padding-top: 60px;
+    }
+
+    .filters {
+        display: block;
+    }
+
+    .filters-container {
+        display: block;
+        margin: 0 0 30px 0;
+    }
+
+    .filters-container span.name {
+        margin: 0 0 20px 0;
+    }
+
+    .filters-selection {
+        display: block;
+    }
+
+    .filters-selection button {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid #ddd;
+        height: 50px;
+    }
+
+
+    .filters-selection button:last-child {
+        border-bottom: 0;
+    }
+
+    .filters-selection button:hover {
+        color: #42b983;
+    }
+
+    .filters-selection button.active {
+        color: #fff;
+        background: #42b983;
+    }  
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 2;
+        font-size: 14px;
+    }
+
+
+}
 
 </style>

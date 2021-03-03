@@ -35,4 +35,14 @@ export default {
 
 <style scoped>
 
+
+@media only screen and (max-width: 720px) {
+
+    .lesson {
+        width: 100%;
+    }
+
+
+}
+
 </style>
