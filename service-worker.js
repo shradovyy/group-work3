@@ -1,4 +1,4 @@
-var cacheName = 'classes-v10';
+var cacheName = 'classes-v1';
 var cacheFiles = [
     'index.html',
     'app.js',
