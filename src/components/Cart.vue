@@ -31,8 +31,10 @@
                                 <input type="text" name="phone" placeholder="Enter your phone number" v-model.trim="order.phone.value">
                                 <span class="error">{{ this.$parent.isValidPhone }}</span>
                             </div>
-    
-                            <button type="button" @click="this.$parent.checkout" :disabled="!this.$parent.isValidCheckout">Checkout</button>
+
+                            <div class="network-error" v-show="!isOnline">You are offline. To checkout you have to be connected to the internet.</div>
+                            <button type="button" @click="this.$parent.checkout" :disabled="!this.$parent.isValidCheckout || !isOnline">Checkout</button>
+                        
                         </form>
                     </div>
 
@@ -53,7 +55,7 @@ export default {
     name: 'Cart',
     data() {
         return {
-            
+            isOnline: true
         }
     },
     methods: {
@@ -69,12 +71,33 @@ export default {
         removeFromCart(index, event) {
             if(event) event.preventDefault();
             this.$emit('remove', index);
+        },
+        checkConnection(){
+            var ifConnected = window.navigator.onLine;
+            if (ifConnected) {
+                this.isOnline = true;
+            } else {
+                this.isOnline = false;
+            }
         }
     },
     computed: {
         cartTotal() {
             return this.$parent.cartTotal;
         }
+    },
+    mounted() {
+        setInterval(() => {
+            this.checkConnection();
+        }, 100);
     }
 }
 </script>
+
+<style scoped>
+    .network-error {
+        color: red;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
